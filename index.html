@@ -18,8 +18,8 @@
       --line: rgba(255,255,255,.10);
       --text: #fafafa;
       --muted: #a1a1aa;
-      --accent: #f2a65a;
-      --accent-2: #f6c177;
+      --accent: #c98a18;
+      --accent-2: #e2b13f;
       --ink: #15120f;
       --radius: 26px;
       --shadow: 0 24px 80px rgba(0,0,0,.34);
@@ -30,31 +30,12 @@
     body {
       min-height: 100vh;
       color: var(--text);
-      background:
-        radial-gradient(circle at 15% 0%, rgba(242,166,90,.12), transparent 28rem),
-        radial-gradient(circle at 90% 18%, rgba(246,193,119,.08), transparent 24rem),
-        var(--bg);
+      background: #020202;
       font-family: "DM Sans", system-ui, sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
     }
-    body::before {
-      content: "";
-      position: fixed; inset: 0; pointer-events: none; z-index: -1;
-      opacity: .23;
-      background-image: radial-gradient(rgba(255,255,255,.35) .6px, transparent .6px);
-      background-size: 18px 18px;
-      mask-image: linear-gradient(to bottom, black, transparent 72%);
-    }
-
-    .orb {
-      position: fixed; width: 28rem; height: 28rem; border-radius: 50%;
-      background: rgba(242,166,90,.07); filter: blur(70px);
-      pointer-events: none; z-index: -1; animation: drift 13s ease-in-out infinite alternate;
-    }
-    .orb.one { top: 18%; left: -15rem; }
-    .orb.two { right: -16rem; bottom: 8%; animation-delay: -5s; }
-    @keyframes drift { to { transform: translate3d(7rem, -3rem, 0) scale(1.12); } }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1; }
 
     a { color: inherit; }
     button, a { -webkit-tap-highlight-color: transparent; }
@@ -73,8 +54,8 @@
     .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 700; }
     .logo {
       width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center;
-      color: var(--ink); background: linear-gradient(135deg, #ffd08c, #e9964d);
-      box-shadow: 0 10px 30px rgba(242,166,90,.22);
+      color: var(--ink); background: linear-gradient(135deg, #e8bd55, #a96812);
+      box-shadow: 0 10px 30px rgba(201,138,24,.22);
       font-family: "Space Grotesk", sans-serif; font-weight: 700;
     }
     .brand-name { font-family: "Space Grotesk", sans-serif; letter-spacing: -.04em; font-size: 1.12rem; }
@@ -87,8 +68,8 @@
     }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px;
-      border: 1px solid rgba(242,166,90,.2); border-radius: 999px;
-      background: rgba(242,166,90,.07); color: var(--accent-2); font-size: .78rem; font-weight: 700;
+      border: 1px solid rgba(201,138,24,.2); border-radius: 999px;
+      background: rgba(201,138,24,.07); color: var(--accent-2); font-size: .78rem; font-weight: 700;
       letter-spacing: .08em; text-transform: uppercase; animation: rise .7s ease both;
     }
     .dot { width: 7px; height: 7px; border-radius: 50%; background: #79d68b; box-shadow: 0 0 0 5px rgba(121,214,139,.09); }
@@ -97,17 +78,17 @@
       font: 700 clamp(3.4rem, 9vw, 7.4rem)/.88 "Space Grotesk", sans-serif;
       letter-spacing: -.075em; animation: rise .7s .08s ease both;
     }
-    .gradient { background: linear-gradient(120deg, #fff 15%, #f6c177 65%, #e9964d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .gradient { background: linear-gradient(120deg, #fff 15%, #d9a52f 65%, #a96812); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero-copy { margin-top: 25px; max-width: 610px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.15rem); animation: rise .7s .16s ease both; }
     .hero-actions { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; animation: rise .7s .24s ease both; }
     .primary, .secondary {
       border-radius: 999px; padding: 12px 18px; text-decoration: none; font-weight: 700; display: inline-flex; gap: 9px; align-items: center;
       transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
     }
-    .primary { color: var(--ink); background: linear-gradient(135deg, #ffd08c, #e9964d); box-shadow: 0 15px 40px rgba(242,166,90,.16); }
+    .primary { color: var(--ink); background: linear-gradient(135deg, #e8bd55, #a96812); box-shadow: 0 15px 40px rgba(201,138,24,.16); }
     .secondary { color: var(--text); border: 1px solid var(--line); background: rgba(255,255,255,.04); }
     .primary:hover, .secondary:hover { transform: translateY(-3px); }
-    .primary:hover { box-shadow: 0 20px 50px rgba(242,166,90,.25); }
+    .primary:hover { box-shadow: 0 20px 50px rgba(201,138,24,.25); }
 
     .hero-card {
       position: relative; min-height: 330px; padding: 25px; border: 1px solid var(--line); border-radius: 34px;
@@ -116,24 +97,24 @@
     }
     .hero-card::before {
       content: ""; position: absolute; width: 220px; height: 220px; right: -70px; top: -70px;
-      border-radius: 50%; background: rgba(242,166,90,.16); filter: blur(3px);
+      border-radius: 50%; background: rgba(201,138,24,.16); filter: blur(3px);
     }
     .window-top { display: flex; gap: 6px; margin-bottom: 35px; }
     .window-top i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.22); }
-    .mini-logo { width: 92px; height: 92px; display: grid; place-items: center; border-radius: 22px; background: linear-gradient(135deg,#ffd08c,#e9964d); color: var(--ink); font: 700 1.4rem "Space Grotesk"; box-shadow: 0 18px 50px rgba(242,166,90,.2); }
+    .mini-logo { width: 92px; height: 92px; display: grid; place-items: center; border-radius: 22px; background: linear-gradient(135deg,#e8bd55,#a96812); color: var(--ink); font: 700 1.4rem "Space Grotesk"; box-shadow: 0 18px 50px rgba(201,138,24,.2); }
     .hero-card h2 { margin-top: 20px; font: 700 1.55rem "Space Grotesk"; }
     .hero-card p { margin-top: 7px; color: var(--muted); }
     .bars { margin-top: 30px; display: grid; gap: 10px; }
     .bar { height: 10px; border-radius: 99px; background: rgba(255,255,255,.07); overflow: hidden; }
-    .bar span { display: block; height: 100%; width: var(--w); border-radius: inherit; background: linear-gradient(90deg,#f6c177,#e9964d); animation: load 1.5s .5s both; }
+    .bar span { display: block; height: 100%; width: var(--w); border-radius: inherit; background: linear-gradient(90deg,#d9a52f,#a96812); animation: load 1.5s .5s both; }
 
     .search-wrap { width: 220px; max-width: 220px; margin: 0 0 0 18px; position: relative; right: auto; bottom: auto; animation: rise .7s .18s ease both; }
     .search { width: 100%; height: 46px; padding: 0 45px 0 42px; border: 1px solid rgba(255,255,255,.10); border-radius: 18px;
       outline: none; color: var(--text); background: rgba(255,255,255,.045); box-shadow: 0 16px 50px rgba(0,0,0,.16);
       backdrop-filter: blur(12px); transition: border-color .25s, box-shadow .25s, background .25s; }
     .search::placeholder { color: #6f727b; }
-    .search:focus { border-color: rgba(242,166,90,.42); background: rgba(255,255,255,.06);
-      box-shadow: 0 0 0 4px rgba(242,166,90,.07), 0 18px 55px rgba(0,0,0,.2); }
+    .search:focus { border-color: rgba(201,138,24,.42); background: rgba(255,255,255,.06);
+      box-shadow: 0 0 0 4px rgba(201,138,24,.07), 0 18px 55px rgba(0,0,0,.2); }
     .search-icon { position:absolute; left:13px; top:12px; width:20px; height:20px; color:#777b85; pointer-events:none; }
     .clear-search { position:absolute; right:5px; top:5px; width:36px; height:36px; border:0; border-radius:12px;
       color:#999ca5; background:transparent; cursor:pointer; display:none; font-size:1.5rem; }
@@ -154,8 +135,8 @@
       transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;
       animation: rise .65s both;
     }
-    .tile::after { content: ""; position: absolute; inset: -60% 20% auto -40%; height: 180px; background: rgba(242,166,90,.08); filter: blur(45px); pointer-events: none; }
-    .tile:hover { transform: translateY(-9px); border-color: rgba(242,166,90,.28); box-shadow: 0 25px 65px rgba(0,0,0,.3); }
+    .tile::after { content: ""; position: absolute; inset: -60% 20% auto -40%; height: 180px; background: rgba(201,138,24,.08); filter: blur(45px); pointer-events: none; }
+    .tile:hover { transform: translateY(-9px); border-color: rgba(201,138,24,.28); box-shadow: 0 25px 65px rgba(0,0,0,.3); }
     .app-icon {
       width: 72px; height: 72px; border-radius: 23px; background: #191a1f; display: grid; place-items: center;
       overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,.2);
@@ -171,7 +152,7 @@
       border: 1px solid rgba(255,255,255,.08); text-decoration: none; font-size: .86rem; font-weight: 700;
       transition: all .22s ease;
     }
-    .btn:hover { color: var(--ink); background: #f6c177; border-color: #f6c177; transform: translateY(-2px); }
+    .btn:hover { color: var(--ink); background: #d9a52f; border-color: #d9a52f; transform: translateY(-2px); }
     .btn svg { width: 16px; height: 16px; }
 
     footer { border-top: 1px solid var(--line); padding: 28px 24px 36px; color: #71717a; text-align: center; font-size: .78rem; }
@@ -204,14 +185,14 @@
       width:38px;height:38px;object-fit:contain;display:block;flex:none;
       border-radius:10px;
       animation:logoPulse 3.2s ease-in-out infinite;
-      filter:drop-shadow(0 0 10px rgba(242,166,90,.16));
+      filter:drop-shadow(0 0 10px rgba(201,138,24,.16));
     }
     .hero-title-row{display:flex;align-items:center;gap:24px}
     .hero-title-row h1{margin-top:20px}
     .hero-logo{
       width:110px;height:110px;object-fit:contain;display:block;flex:none;
       animation:logoPulse 3.2s ease-in-out infinite;
-      filter:drop-shadow(0 0 18px rgba(242,166,90,.20));
+      filter:drop-shadow(0 0 18px rgba(201,138,24,.20));
     }
     @keyframes logoPulse{
       0%,100%{transform:scale(1);opacity:.96}
@@ -254,7 +235,7 @@
       display: block;
       flex: none;
       animation: logoPulse 3.2s ease-in-out infinite;
-      filter: drop-shadow(0 0 24px rgba(242,166,90,.24));
+      filter: drop-shadow(0 0 24px rgba(201,138,24,.24));
     }
 
     .search-wrap {
@@ -314,7 +295,7 @@
     }
     .consent-accept {
       color: var(--ink);
-      background: linear-gradient(135deg, #ffd08c, #e9964d);
+      background: linear-gradient(135deg, #e8bd55, #a96812);
     }
     .consent-more {
       color: var(--text);
@@ -386,12 +367,33 @@
       .btn:hover { transform: none; }
     }
 
+
+    .matrix-bg{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;background:#020202}
+    .matrix-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(226,177,63,.14),transparent 19rem);transition:background .15s}
+    .matrix-columns{position:absolute;inset:-20vh 0 0;display:flex;justify-content:space-around;opacity:.3}
+    .matrix-column{flex:0 0 1rem;color:#c99422;font:600 .78rem/1.4 "Space Grotesk",monospace;text-align:center;white-space:pre;text-shadow:0 0 6px rgba(201,138,24,.3);animation:matrixFall var(--duration) linear var(--delay) infinite}
+    .matrix-column.hot{color:#ffe18a;text-shadow:0 0 13px rgba(226,177,63,.9);opacity:1}
+    @keyframes matrixFall{from{transform:translateY(-115vh)}to{transform:translateY(115vh)}}
+    .mouse-light{position:fixed;width:320px;height:320px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(226,177,63,.13),transparent 70%);opacity:0;transition:opacity .2s}
+    .dnotes-warning{margin-top:12px;padding:10px 12px;border-left:2px solid rgba(201,138,24,.75);border-radius:9px;background:rgba(201,138,24,.06);color:#aaa493;font-size:.78rem;line-height:1.5}
+    .dnotes-warning strong{color:#dfb94f}
+    .download-loading{pointer-events:none;opacity:.75}
+    .download-loading svg{animation:downloadSpin .7s linear infinite}
+    @keyframes downloadSpin{to{transform:rotate(360deg)}}
+    .download-success{animation:downloadPulse .55s ease}
+    @keyframes downloadPulse{0%{box-shadow:0 0 0 0 rgba(201,138,24,.45)}100%{box-shadow:0 0 0 12px rgba(201,138,24,0)}}
+    .privacy{max-width:1120px;margin:0 auto 70px;padding:0 24px;scroll-margin-top:90px}
+    .privacy-card{padding:clamp(22px,4vw,34px);border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.035)}
+    .privacy-card h2{font:700 clamp(1.5rem,3vw,2rem) "Space Grotesk";letter-spacing:-.04em}
+    .privacy-card p,.privacy-card li{color:var(--muted);font-size:.9rem;line-height:1.65}
+    .privacy-card p{margin-top:11px}.privacy-card ul{margin:16px 0 0;padding-left:20px}.privacy-card li+li{margin-top:7px}.privacy-note{color:#777!important;font-size:.78rem!important}
+    @media(max-width:560px){.privacy{padding-inline:16px;margin-bottom:52px}}
+
   </style>
 </head>
 
 <body>
-  <div class="orb one"></div>
-  <div class="orb two"></div>
+  <div class="matrix-bg" aria-hidden="true"><div class="matrix-columns" id="matrixColumns"></div></div><div class="mouse-light" id="mouseLight"></div>
 
   <nav class="nav" aria-label="Navegação principal">
     <div class="nav-inner">
@@ -399,7 +401,7 @@
         <img class="nav-logo" src="logo.EXDE.png" alt="EXDE">
         <span class="brand-name">EXDE</span>
       </a>
-      <a class="nav-link" href="#downloads">Aplicações</a>
+      <a class="nav-link" href="#downloads">Aplicações</a><a class="nav-link" href="#privacidade">Privacidade</a>
         <div class="search-wrap">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path>
@@ -413,8 +415,8 @@
 
   <header class="hero">
     <div class="hero-content">
-      <h1>Apps que<br><span class="gradient">simplesmente funcionam.</span></h1>
-      <p class="hero-copy">Encontra rapidamente a aplicação que procuras e descarrega a versão disponível para o teu dispositivo.</p>
+      <h1>Apps que<br><span class="gradient">simplesmente funcionam</span></h1>
+      <p class="hero-copy">Apps públicas feitas por Dav, criador independente</p>
     </div>
 
     <div class="hero-logo-area">
@@ -431,6 +433,20 @@
     </div>
     <ul class="tiles" id="lista" aria-live="polite"></ul>
   </main>
+
+  <section class="privacy" id="privacidade" aria-labelledby="privacidade-titulo">
+    <div class="privacy-card">
+      <h2 id="privacidade-titulo">Política de privacidade e utilização</h2>
+      <p>Os instaladores e aplicações disponibilizados pela EXDE podem ocupar espaço no sistema. Esse espaço é da responsabilidade do utilizador.</p>
+      <ul>
+        <li>A EXDE não se responsabiliza pelo espaço ocupado pelos instaladores, aplicações ou respetivos ficheiros no teu dispositivo.</li>
+        <li>A EXDE não garante nem se compromete a disponibilizar versões mais pequenas dos instaladores.</li>
+        <li>Antes de instalar, verifica se tens espaço de armazenamento suficiente.</li>
+        <li>A decisão de instalar, manter ou remover uma aplicação é da responsabilidade do utilizador.</li>
+      </ul>
+      <p class="privacy-note">Esta política é informativa e não substitui aconselhamento jurídico.</p>
+    </div>
+  </section>
 
   <div class="mobile-consent" id="mobileConsent" role="dialog" aria-modal="true"
        aria-labelledby="mobileConsentTitle" aria-describedby="mobileConsentText">
@@ -530,7 +546,14 @@ const APPS = [
           const btns = document.createElement("div");
           btns.className = "btns";
           btns.append(botao("MSI", app.msi, app.nome), botao("EXE", app.exe, app.nome));
-          li.append(icon, h, p, btns);
+          li.append(icon, h, p);
+          if (app.nome === "Dnotes") {
+            const aviso = document.createElement("div");
+            aviso.className = "dnotes-warning";
+            aviso.innerHTML = "<strong>Aviso:</strong> a Dnotes não está registada/assinada para todos os PCs. Alguns sistemas podem mostrar um aviso de segurança ao executar o instalador. O aviso é do próprio sistema operativo. Verifica a origem do ficheiro e, se confiares nele, podes executar normalmente seguindo as opções apresentadas pelo Windows.";
+            li.appendChild(aviso);
+          }
+          li.appendChild(btns);
           lista.appendChild(li);
         });
       }
@@ -589,6 +612,54 @@ const APPS = [
         document.body.style.overflow = "hidden";
       }
     }, true);
+
+
+    const matrixColumns = document.getElementById("matrixColumns");
+    function criarMatrix(){
+      if(!matrixColumns)return;
+      matrixColumns.innerHTML="";
+      const total=Math.max(24,Math.min(86,Math.floor(innerWidth/19)));
+      for(let i=0;i<total;i++){
+        const col=document.createElement("span"); col.className="matrix-column";
+        const n=20+Math.floor(Math.random()*36); let s="";
+        for(let j=0;j<n;j++) s+=(Math.random()>.5?"1":"0")+(j===n-1?"":"\n");
+        col.textContent=s;
+        col.style.setProperty("--duration",(8+Math.random()*10).toFixed(2)+"s");
+        col.style.setProperty("--delay",(-Math.random()*14).toFixed(2)+"s");
+        matrixColumns.appendChild(col);
+      }
+    }
+    criarMatrix();
+    let matrixResize;
+    addEventListener("resize",()=>{clearTimeout(matrixResize);matrixResize=setTimeout(criarMatrix,200)});
+
+    const mouseLight=document.getElementById("mouseLight");
+    let lastMove=0;
+    addEventListener("pointermove",(e)=>{
+      const now=performance.now(); if(now-lastMove<24)return; lastMove=now;
+      mouseLight.style.left=e.clientX+"px"; mouseLight.style.top=e.clientY+"px"; mouseLight.style.opacity="1";
+      document.documentElement.style.setProperty("--mx",e.clientX+"px");
+      document.documentElement.style.setProperty("--my",e.clientY+"px");
+      document.querySelectorAll(".matrix-column").forEach(col=>{
+        const r=col.getBoundingClientRect();
+        col.classList.toggle("hot",Math.abs((r.left+r.width/2)-e.clientX)<70);
+      });
+    });
+    addEventListener("pointerleave",()=>mouseLight.style.opacity="0");
+
+    document.addEventListener("click",(event)=>{
+      const link=event.target.closest('a[download]');
+      if(!link)return;
+      if(typeof requiresMobileConsent!=="undefined"&&requiresMobileConsent&&!mobileConsentGranted)return;
+      const original=link.innerHTML;
+      link.classList.add("download-loading");
+      link.innerHTML='<span>⟳</span><span>A preparar...</span>';
+      setTimeout(()=>{
+        link.classList.remove("download-loading"); link.classList.add("download-success");
+        link.innerHTML='<span>✓</span><span>A iniciar</span>';
+        setTimeout(()=>{link.classList.remove("download-success");link.innerHTML=original},900);
+      },650);
+    },true);
 
     document.getElementById("ano").textContent = new Date().getFullYear();
   </script>
