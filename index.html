@@ -35,8 +35,8 @@
       line-height: 1.5;
       overflow-x: hidden;
     }
-    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1; }
 
+    .nav, .hero, main, footer { position: relative; z-index: 1; }
     a { color: inherit; }
     button, a { -webkit-tap-highlight-color: transparent; }
 
@@ -77,9 +77,10 @@
       margin-top: 20px; max-width: 760px;
       font: 700 clamp(3.4rem, 9vw, 7.4rem)/.88 "Space Grotesk", sans-serif;
       letter-spacing: -.075em; animation: rise .7s .08s ease both;
+      filter: drop-shadow(0 2px 16px rgba(0,0,0,.95));
     }
     .gradient { background: linear-gradient(120deg, #fff 15%, #d9a52f 65%, #a96812); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-copy { margin-top: 25px; max-width: 610px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.15rem); animation: rise .7s .16s ease both; }
+    .hero-copy { text-shadow: 0 1px 14px #000, 0 0 3px #000; margin-top: 25px; max-width: 610px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.15rem); animation: rise .7s .16s ease both; }
     .hero-actions { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; animation: rise .7s .24s ease both; }
     .primary, .secondary {
       border-radius: 999px; padding: 12px 18px; text-decoration: none; font-weight: 700; display: inline-flex; gap: 9px; align-items: center;
@@ -130,7 +131,7 @@
     .tile {
       position: relative; min-height: 300px; padding: 22px; display: flex; flex-direction: column;
       border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
-      background: linear-gradient(150deg, rgba(255,255,255,.065), rgba(255,255,255,.018));
+      background: linear-gradient(150deg, #1e1e22, #121214);
       box-shadow: 0 10px 40px rgba(0,0,0,.12);
       transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;
       animation: rise .65s both;
@@ -154,8 +155,30 @@
     }
     .btn:hover { color: var(--ink); background: #d9a52f; border-color: #d9a52f; transform: translateY(-2px); }
     .btn svg { width: 16px; height: 16px; }
+    .app-social{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;font-size:.8rem;color:#a1a1aa}
+    .like-btn{position:relative;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px 0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:#1b1b1f;color:#c9c9d0;font:700 .85rem "DM Sans",sans-serif;cursor:pointer;transition:background .25s,border-color .25s,color .25s,box-shadow .25s,transform .15s}
+    .like-btn:hover{border-color:rgba(226,177,63,.55);color:#f5d46b}
+    .like-btn:active{transform:scale(.94)}
+    .like-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2}
+    .like-btn[aria-pressed="true"]{color:var(--ink);background:linear-gradient(135deg,#e8bd55,#a96812);border-color:transparent;box-shadow:0 8px 24px rgba(201,138,24,.28)}
+    .like-btn[aria-pressed="true"] svg{fill:currentColor;animation:likePop .45s ease}
+    .like-btn.erro{animation:likeShake .4s}
+    .like-btn[disabled]{opacity:.7;cursor:progress}
+    @keyframes likePop{0%{transform:scale(.55)}55%{transform:scale(1.35)}100%{transform:scale(1)}}
+    @keyframes likeShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+    .download-count{display:inline-flex;align-items:center;gap:6px;color:#a1a1aa;font-variant-numeric:tabular-nums}
+    .download-count svg{width:15px;height:15px;flex:none}
 
-    footer { border-top: 1px solid var(--line); padding: 28px 24px 36px; color: #71717a; text-align: center; font-size: .78rem; }
+    footer { border-top: 1px solid var(--line); background: #09090b; padding: 28px 24px 36px; color: #71717a; text-align: center; font-size: .78rem; }
+    .footer-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px}
+    .privacy-toggle{border:0;background:none;padding:0;color:#a1a1aa;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;transition:color .2s}
+    .privacy-toggle:hover,.privacy-toggle[aria-expanded="true"]{color:var(--accent-2)}
+    .privacy-text{max-width:760px;margin:22px auto 0;padding:22px 24px;text-align:left;border:1px solid var(--line);border-radius:22px;background:linear-gradient(150deg,#1e1e22,#121214)}
+    .privacy-text[hidden]{display:none}
+    .privacy-text h2{font:700 1.15rem "Space Grotesk",sans-serif;color:var(--text);letter-spacing:-.03em}
+    .privacy-text p,.privacy-text li{color:var(--muted);font-size:.85rem;line-height:1.65}
+    .privacy-text p{margin-top:10px}.privacy-text ul{margin:12px 0 0;padding-left:20px}.privacy-text li+li{margin-top:6px}
+    .privacy-text .privacy-note{color:#777;font-size:.76rem}
     footer strong { color: #a1a1aa; }
 
     @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -368,32 +391,41 @@
     }
 
 
-    .matrix-bg{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;background:#020202}
-    .matrix-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(226,177,63,.14),transparent 19rem);transition:background .15s}
-    .matrix-columns{position:absolute;inset:-20vh 0 0;display:flex;justify-content:space-around;opacity:.3}
-    .matrix-column{flex:0 0 1rem;color:#c99422;font:600 .78rem/1.4 "Space Grotesk",monospace;text-align:center;white-space:pre;text-shadow:0 0 6px rgba(201,138,24,.3);animation:matrixFall var(--duration) linear var(--delay) infinite}
-    .matrix-column.hot{color:#ffe18a;text-shadow:0 0 13px rgba(226,177,63,.9);opacity:1}
-    @keyframes matrixFall{from{transform:translateY(-115vh)}to{transform:translateY(115vh)}}
-    .mouse-light{position:fixed;width:320px;height:320px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(226,177,63,.13),transparent 70%);opacity:0;transition:opacity .2s}
-    .dnotes-warning{margin-top:12px;padding:10px 12px;border-left:2px solid rgba(201,138,24,.75);border-radius:9px;background:rgba(201,138,24,.06);color:#aaa493;font-size:.78rem;line-height:1.5}
+    .matrix-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#020202}
+    .matrix-bg canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+    /* camada translúcida: deixa o efeito bem visível */
+    .matrix-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,2,2,.06),rgba(2,2,2,.30));pointer-events:none}
+    .dnotes-warning{margin-top:12px;padding:7px 10px;border-left:2px solid rgba(201,138,24,.75);border-radius:9px;background:rgba(201,138,24,.06);color:#aaa493;font-size:.78rem;line-height:1.5}
     .dnotes-warning strong{color:#dfb94f}
     .download-loading{pointer-events:none;opacity:.75}
     .download-loading svg{animation:downloadSpin .7s linear infinite}
     @keyframes downloadSpin{to{transform:rotate(360deg)}}
     .download-success{animation:downloadPulse .55s ease}
     @keyframes downloadPulse{0%{box-shadow:0 0 0 0 rgba(201,138,24,.45)}100%{box-shadow:0 0 0 12px rgba(201,138,24,0)}}
-    .privacy{max-width:1120px;margin:0 auto 70px;padding:0 24px;scroll-margin-top:90px}
-    .privacy-card{padding:clamp(22px,4vw,34px);border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.035)}
-    .privacy-card h2{font:700 clamp(1.5rem,3vw,2rem) "Space Grotesk";letter-spacing:-.04em}
-    .privacy-card p,.privacy-card li{color:var(--muted);font-size:.9rem;line-height:1.65}
-    .privacy-card p{margin-top:11px}.privacy-card ul{margin:16px 0 0;padding-left:20px}.privacy-card li+li{margin-top:7px}.privacy-note{color:#777!important;font-size:.78rem!important}
-    @media(max-width:560px){.privacy{padding-inline:16px;margin-bottom:52px}}
 
+
+    /* Logo atrás do título, deitada como uma placa caída */
+    .hero{position:relative;grid-template-columns:minmax(0,1fr)}
+    .hero-content{position:relative;z-index:2}
+    .hero-logo-area{
+      position:absolute;z-index:1;pointer-events:none;
+      right:-2%;top:50%;width:min(54%,560px);min-height:0;
+      aspect-ratio:1;opacity:var(--logo-opacity,.55);
+      transform:translateY(-50%) rotate(-21deg) perspective(1100px) rotateX(16deg) rotateY(-12deg);
+    }
+    .hero-logo{width:100%;height:auto;max-width:none;
+      filter:drop-shadow(0 28px 30px rgba(0,0,0,.7)) drop-shadow(0 0 26px rgba(201,138,24,.22))}
+    @media (max-width:820px){
+      .hero-logo-area{width:min(78%,420px);right:-10%;opacity:calc(var(--logo-opacity,.55) * .8)}
+    }
+    @media (max-width:560px){
+      .hero-logo-area{width:86%;right:-18%;top:56%}
+    }
   </style>
 </head>
 
 <body>
-  <div class="matrix-bg" aria-hidden="true"><div class="matrix-columns" id="matrixColumns"></div></div><div class="mouse-light" id="mouseLight"></div>
+  <div class="matrix-bg" aria-hidden="true"><canvas id="matrixCanvas"></canvas></div>
 
   <nav class="nav" aria-label="Navegação principal">
     <div class="nav-inner">
@@ -434,19 +466,6 @@
     <ul class="tiles" id="lista" aria-live="polite"></ul>
   </main>
 
-  <section class="privacy" id="privacidade" aria-labelledby="privacidade-titulo">
-    <div class="privacy-card">
-      <h2 id="privacidade-titulo">Política de privacidade e utilização</h2>
-      <p>Os instaladores e aplicações disponibilizados pela EXDE podem ocupar espaço no sistema. Esse espaço é da responsabilidade do utilizador.</p>
-      <ul>
-        <li>A EXDE não se responsabiliza pelo espaço ocupado pelos instaladores, aplicações ou respetivos ficheiros no teu dispositivo.</li>
-        <li>A EXDE não garante nem se compromete a disponibilizar versões mais pequenas dos instaladores.</li>
-        <li>Antes de instalar, verifica se tens espaço de armazenamento suficiente.</li>
-        <li>A decisão de instalar, manter ou remover uma aplicação é da responsabilidade do utilizador.</li>
-      </ul>
-      <p class="privacy-note">Esta política é informativa e não substitui aconselhamento jurídico.</p>
-    </div>
-  </section>
 
   <div class="mobile-consent" id="mobileConsent" role="dialog" aria-modal="true"
        aria-labelledby="mobileConsentTitle" aria-describedby="mobileConsentText">
@@ -465,7 +484,24 @@
     </div>
   </div>
 
-  <footer>© <span id="ano"></span> <strong>EXDE</strong> · Feito para ser simples.</footer>
+  <footer id="privacidade">
+    <div class="footer-row">
+      <span>© <span id="ano"></span> <strong>EXDE</strong> · Feito para ser simples.</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <button type="button" class="privacy-toggle" id="privacyToggle" aria-expanded="false" aria-controls="privacyText">Política de privacidade</button>
+    </div>
+    <div class="privacy-text" id="privacyText" hidden>
+      <h2>Política de privacidade e utilização</h2>
+      <p>Os instaladores e aplicações disponibilizados pela EXDE podem ocupar espaço no sistema. Esse espaço é da responsabilidade do utilizador.</p>
+      <ul>
+        <li>A EXDE não se responsabiliza pelo espaço ocupado pelos instaladores, aplicações ou respetivos ficheiros no teu dispositivo.</li>
+        <li>A EXDE não garante nem se compromete a disponibilizar versões mais pequenas dos instaladores.</li>
+        <li>Antes de instalar, verifica se tens espaço de armazenamento suficiente.</li>
+        <li>A decisão de instalar, manter ou remover uma aplicação é da responsabilidade do utilizador.</li>
+      </ul>
+      <p class="privacy-note">Esta política é informativa e não substitui aconselhamento jurídico.</p>
+    </div>
+  </footer>
 
   <script>
     const BASE = 'https://github.com/dav060iddev/exde/releases/download/v1.16.0/';
@@ -496,7 +532,6 @@ const APPS = [
     const lista = document.getElementById("lista");
     const pesquisa = document.getElementById("pesquisa");
     const limpar = document.getElementById("limpar");
-    const contagem = document.getElementById("contagem");
     const icone = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>';
 
     function botao(rotulo, ficheiro, app) {
@@ -507,6 +542,132 @@ const APPS = [
       a.setAttribute("aria-label", "Descarregar " + app + " (" + rotulo + ")");
       a.innerHTML = icone + "<span>" + rotulo + "</span>";
       return a;
+    }
+
+    /* ===== Descarregamentos reais (GitHub) e likes reais (CounterAPI) ===== */
+    const REPO = "dav060iddev/exde";
+    const LIKE_API = "https://api.counterapi.dev/v1/exde-dav060iddev/";
+    const fmt = n => Number(n).toLocaleString("pt-PT");
+    const store = {
+      get(k){ try { return localStorage.getItem(k); } catch (_) { return null; } },
+      set(k, v){ try { localStorage.setItem(k, v); } catch (_) {} }
+    };
+    async function pedir(url, ms) {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), ms || 8000);
+      try { return await fetch(url, { cache: "no-store", signal: ctrl.signal }); }
+      finally { clearTimeout(t); }
+    }
+
+    /* Descarregamentos: contagem oficial do GitHub (todas as versões, MSI + EXE).
+       1) API do GitHub  2) stats.json (gerado pela Action, sem limite)  3) último valor guardado */
+    let assetsPromise = null;
+    function obterAssets() {
+      if (assetsPromise) return assetsPromise;
+      assetsPromise = (async () => {
+        let guardado = null;
+        try { guardado = JSON.parse(store.get("exde-assets-v2") || "null"); } catch (_) {}
+        if (guardado && Date.now() - guardado.t < 5 * 60 * 1000) return guardado.d;
+        const guardar = d => { store.set("exde-assets-v2", JSON.stringify({ t: Date.now(), d })); return d; };
+        try {
+          const r = await pedir("https://api.github.com/repos/" + REPO + "/releases?per_page=100");
+          if (!r.ok) throw new Error("GitHub " + r.status);
+          const rels = await r.json();
+          const d = [];
+          rels.forEach(rel => (rel.assets || []).forEach(a => d.push([a.name, Number(a.download_count) || 0])));
+          return guardar(d);
+        } catch (_) {}
+        try {
+          const r = await pedir("stats.json");
+          if (!r.ok) throw new Error("sem stats.json");
+          const j = await r.json();
+          if (Array.isArray(j.assets)) return guardar(j.assets);
+        } catch (_) {}
+        assetsPromise = null;
+        return guardado ? guardado.d : null;
+      })();
+      return assetsPromise;
+    }
+    async function obterDownloads(app) {
+      const assets = await obterAssets();
+      if (!assets) return null;
+      const prefixo = app.nome.toLowerCase();
+      return assets
+        .filter(([nome]) => nome.toLowerCase().startsWith(prefixo) && /\.(msi|exe)$/i.test(nome))
+        .reduce((soma, [, n]) => soma + n, 0);
+    }
+
+    /* Likes: contador partilhado entre todos os visitantes */
+    const likeCache = new Map();
+    const likeSlug = app => "like-" + app.nome.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    async function contador(app, acao) {
+      const r = await pedir(LIKE_API + likeSlug(app) + (acao ? "/" + acao : ""));
+      if (!r.ok) {
+        if (!acao) return 0;               // contador ainda não existe = 0 likes
+        throw new Error("Contador " + r.status);
+      }
+      const d = await r.json();
+      const n = Number(d.count ?? d.value ?? (d.data && d.data.up_count));
+      if (!Number.isFinite(n)) throw new Error("Resposta inesperada");
+      return Math.max(0, n);
+    }
+
+    const coracao = '<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-7.8-4.7-9.6-9.6C1.1 7.4 3 4.5 6.1 4.5c2.1 0 3.3 1.1 3.9 2.2.6-1.1 1.8-2.2 3.9-2.2 3.1 0 5 2.9 3.7 6.4C19.8 15.8 12 20.5 12 20.5z"/></svg>';
+
+    function criarSocial(app) {
+      const wrap = document.createElement("div");
+      wrap.className = "app-social";
+
+      const like = document.createElement("button");
+      like.type = "button";
+      like.className = "like-btn";
+      const likedKey = "exde-liked-" + likeSlug(app);
+      let liked = store.get(likedKey) === "1";
+      like.setAttribute("aria-pressed", String(liked));
+      like.setAttribute("aria-label", "Gostar de " + app.nome);
+      like.innerHTML = coracao + '<span class="like-count">…</span>';
+      const likeNum = like.querySelector(".like-count");
+      const mostrar = () => {
+        const n = likeCache.get(app.nome);
+        likeNum.textContent = typeof n === "number" ? fmt(n) : "—";
+      };
+
+      if (likeCache.has(app.nome)) mostrar();
+      else contador(app).then(n => likeCache.set(app.nome, n)).catch(() => likeCache.set(app.nome, null)).finally(() => {
+        mostrar();
+        if (likeCache.get(app.nome) === null) likeCache.delete(app.nome);   // tenta de novo no próximo desenho
+      });
+
+      like.addEventListener("click", async () => {
+        if (like.disabled) return;
+        like.disabled = true;
+        const queroLike = !liked;
+        try {
+          const n = await contador(app, queroLike ? "up" : "down");   // a resposta traz o valor real e partilhado
+          liked = queroLike;
+          likeCache.set(app.nome, n);
+          store.set(likedKey, liked ? "1" : "0");
+          like.setAttribute("aria-pressed", String(liked));
+          like.title = "";
+        } catch (_) {
+          like.title = "Não foi possível ligar ao contador. Tenta outra vez.";
+          like.classList.remove("erro"); void like.offsetWidth; like.classList.add("erro");
+        }
+        mostrar();
+        like.disabled = false;
+      });
+
+      const dl = document.createElement("div");
+      dl.className = "download-count";
+      dl.title = "Descarregamentos totais (GitHub)";
+      dl.innerHTML = icone + '<span>…</span>';
+      const dlTxt = dl.querySelector("span");
+      obterDownloads(app).then(n => {
+        dlTxt.textContent = n === null ? "—" : fmt(n) + (n === 1 ? " descarregamento" : " descarregamentos");
+      });
+
+      wrap.append(like, dl);
+      return wrap;
     }
 
     function desenharApps() {
@@ -550,9 +711,10 @@ const APPS = [
           if (app.nome === "Dnotes") {
             const aviso = document.createElement("div");
             aviso.className = "dnotes-warning";
-            aviso.innerHTML = "<strong>Aviso:</strong> a Dnotes não está registada/assinada para todos os PCs. Alguns sistemas podem mostrar um aviso de segurança ao executar o instalador. O aviso é do próprio sistema operativo. Verifica a origem do ficheiro e, se confiares nele, podes executar normalmente seguindo as opções apresentadas pelo Windows.";
+            aviso.innerHTML = "<strong>Aviso:</strong> o Windows pode alertar para instalador não assinado.";
             li.appendChild(aviso);
           }
+          li.appendChild(criarSocial(app));
           li.appendChild(btns);
           lista.appendChild(li);
         });
@@ -614,38 +776,111 @@ const APPS = [
     }, true);
 
 
-    const matrixColumns = document.getElementById("matrixColumns");
-    function criarMatrix(){
-      if(!matrixColumns)return;
-      matrixColumns.innerHTML="";
-      const total=Math.max(24,Math.min(86,Math.floor(innerWidth/19)));
-      for(let i=0;i<total;i++){
-        const col=document.createElement("span"); col.className="matrix-column";
-        const n=20+Math.floor(Math.random()*36); let s="";
-        for(let j=0;j<n;j++) s+=(Math.random()>.5?"1":"0")+(j===n-1?"":"\n");
-        col.textContent=s;
-        col.style.setProperty("--duration",(8+Math.random()*10).toFixed(2)+"s");
-        col.style.setProperty("--delay",(-Math.random()*14).toFixed(2)+"s");
-        matrixColumns.appendChild(col);
-      }
-    }
-    criarMatrix();
-    let matrixResize;
-    addEventListener("resize",()=>{clearTimeout(matrixResize);matrixResize=setTimeout(criarMatrix,200)});
+    /* ===== Efeito: 0 e 1 com brilho amarelo intenso (sem halo no rato) ===== */
+    (function () {
+      const cv = document.getElementById("matrixCanvas");
+      if (!cv) return;
+      const ctx = cv.getContext("2d");
+      const reduzir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const FS = 16, GAP = 5, LEVELS = 8, PAD = 14, SIZE = FS + PAD * 2, RAIO = 150;
+      let W = 0, H = 0, dpr = 1, drops = [], sprites = { "0": [], "1": [] };
+      const rato = { x: -9999, y: -9999 };
 
-    const mouseLight=document.getElementById("mouseLight");
-    let lastMove=0;
-    addEventListener("pointermove",(e)=>{
-      const now=performance.now(); if(now-lastMove<24)return; lastMove=now;
-      mouseLight.style.left=e.clientX+"px"; mouseLight.style.top=e.clientY+"px"; mouseLight.style.opacity="1";
-      document.documentElement.style.setProperty("--mx",e.clientX+"px");
-      document.documentElement.style.setProperty("--my",e.clientY+"px");
-      document.querySelectorAll(".matrix-column").forEach(col=>{
-        const r=col.getBoundingClientRect();
-        col.classList.toggle("hot",Math.abs((r.left+r.width/2)-e.clientX)<70);
-      });
-    });
-    addEventListener("pointerleave",()=>mouseLight.style.opacity="0");
+      function construirSprites() {
+        for (const ch of ["0", "1"]) {
+          sprites[ch] = [];
+          for (let l = 0; l < LEVELS; l++) {
+            const t = l / (LEVELS - 1);
+            const c = document.createElement("canvas");
+            c.width = c.height = Math.ceil(SIZE * dpr);
+            const g = c.getContext("2d");
+            g.scale(dpr, dpr);
+            g.font = "700 " + FS + 'px "Courier New", monospace';
+            g.textAlign = "center"; g.textBaseline = "middle";
+            g.shadowColor = "rgba(255,196,0," + (0.65 + t * 0.35).toFixed(2) + ")";
+            g.shadowBlur = 5 + t * 20;
+            g.fillStyle = "rgb(255," + Math.round(178 + t * 65) + "," + Math.round(t * 150) + ")";
+            g.fillText(ch, SIZE / 2, SIZE / 2);
+            if (t > 0.3) g.fillText(ch, SIZE / 2, SIZE / 2);
+            if (t > 0.7) g.fillText(ch, SIZE / 2, SIZE / 2);
+            sprites[ch].push(c);
+          }
+        }
+      }
+
+      const digito = () => (Math.random() > 0.5 ? "1" : "0");
+      function novaGota(x, inicio) {
+        const len = 10 + Math.floor(Math.random() * 18);
+        return {
+          x, len,
+          y: inicio ? Math.random() * (H + len * FS) : -Math.random() * H * 0.6,
+          v: 55 + Math.random() * 110,
+          hot: Math.random() < 0.16,
+          chars: Array.from({ length: len }, digito)
+        };
+      }
+
+      function ajustar() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = innerWidth; H = innerHeight;
+        cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        construirSprites();
+        const passo = FS + GAP, n = Math.ceil(W / passo);
+        drops = [];
+        for (let i = 0; i < n; i++) drops.push(novaGota(i * passo + passo / 2, true));
+      }
+
+      function desenhar(dt) {
+        ctx.clearRect(0, 0, W, H);
+        ctx.globalCompositeOperation = "lighter";
+        for (const d of drops) {
+          if (dt) {
+            d.y += d.v * dt;
+            if (d.y - d.len * FS > H) Object.assign(d, novaGota(d.x, false));
+            if (Math.random() < 0.08) d.chars[Math.floor(Math.random() * d.len)] = digito();
+          }
+          for (let k = 0; k < d.len; k++) {
+            const y = d.y - k * FS;
+            if (y < -SIZE || y > H + SIZE) continue;
+            const f = 1 - k / d.len;
+            let nivel = k === 0 ? LEVELS - 1 : Math.max(1, Math.round(f * (LEVELS - 3)) + (d.hot ? 2 : 0));
+            let alfa = k === 0 ? 1 : 0.28 + f * 0.72;
+            // os próprios dígitos acendem perto do rato (sem bola de luz)
+            const dx = d.x - rato.x, dy = y - rato.y;
+            if (dx * dx + dy * dy < RAIO * RAIO) {
+              const b = 1 - Math.sqrt(dx * dx + dy * dy) / RAIO;
+              nivel = Math.min(LEVELS - 1, nivel + Math.ceil(b * (LEVELS - 1)));
+              alfa = Math.min(1, alfa + b);
+            }
+            ctx.globalAlpha = Math.min(1, alfa);
+            ctx.drawImage(sprites[d.chars[k]][Math.min(LEVELS - 1, nivel)], d.x - SIZE / 2, y - SIZE / 2, SIZE, SIZE);
+          }
+        }
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = "source-over";
+      }
+
+      let ultimo = 0;
+      function loop(t) {
+        const dt = Math.min(0.05, (t - ultimo) / 1000 || 0);
+        ultimo = t;
+        desenhar(dt);
+        requestAnimationFrame(loop);
+      }
+
+      ajustar();
+      if (reduzir) desenhar(0);
+      else requestAnimationFrame(loop);
+
+      let tm;
+      addEventListener("resize", () => { clearTimeout(tm); tm = setTimeout(() => { ajustar(); if (reduzir) desenhar(0); }, 200); });
+      addEventListener("pointermove", e => { rato.x = e.clientX; rato.y = e.clientY; if (reduzir) desenhar(0); }, { passive: true });
+      addEventListener("pointerdown", e => { rato.x = e.clientX; rato.y = e.clientY; }, { passive: true });
+      document.addEventListener("pointerleave", () => { rato.x = rato.y = -9999; });
+      addEventListener("pointerup", e => { if (e.pointerType !== "mouse") rato.x = rato.y = -9999; });
+      addEventListener("pointercancel", () => { rato.x = rato.y = -9999; });
+    })();
 
     document.addEventListener("click",(event)=>{
       const link=event.target.closest('a[download]');
@@ -662,6 +897,18 @@ const APPS = [
     },true);
 
     document.getElementById("ano").textContent = new Date().getFullYear();
+
+    const privToggle = document.getElementById("privacyToggle");
+    const privText = document.getElementById("privacyText");
+    function abrirPrivacidade(abrir) {
+      privText.hidden = !abrir;
+      privToggle.setAttribute("aria-expanded", String(abrir));
+      if (abrir) setTimeout(() => privText.scrollIntoView({ behavior: "smooth", block: "end" }), 30);
+    }
+    privToggle.addEventListener("click", () => abrirPrivacidade(privText.hidden));
+    document.querySelectorAll('a[href="#privacidade"]').forEach(a =>
+      a.addEventListener("click", e => { e.preventDefault(); abrirPrivacidade(true); }));
+    if (location.hash === "#privacidade") abrirPrivacidade(true);
   </script>
 </body>
 </html>
